@@ -5,91 +5,200 @@
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Wallet - حساباتی ڕۆژانە</title>
+    <!-- فۆنتی سەردەمیی Vazirmatn -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, sans-serif; }
-        body { background: #0f172a; color: #f8fafc; padding: 20px; display: flex; justify-content: center; min-height: 100vh; }
-        .container { width: 100%; max-width: 480px; background: #1e293b; padding: 20px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); position: relative; height: fit-content; }
-        
-        .app-header { text-align: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #334155; }
-        .logo-container { display: inline-flex; align-items: center; gap: 8px; background: #0f172a; padding: 8px 16px; border-radius: 50px; border: 1px solid #475569; }
-        .logo-emoji { font-size: 20px; }
-        .logo-container h1 { font-size: 18px; color: #38bdf8; font-weight: bold; }
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #151c2c;
+            --card-border: #232d42;
+            --accent-blue: #38bdf8;
+            --accent-green: #10b981;
+            --accent-red: #f43f5e;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --input-bg: #0f172a;
+        }
 
-        .form-group { margin-bottom: 15px; position: relative; }
-        label { display: block; margin-bottom: 5px; font-size: 14px; color: #94a3b8; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Vazirmatn', sans-serif; 
+            transition: all 0.2s ease;
+        }
+
+        body { 
+            background: var(--bg-color); 
+            color: var(--text-main); 
+            padding: 16px; 
+            display: flex; 
+            justify-content: center; 
+            min-height: 100vh;
+            align-items: center;
+        }
+
+        .container { 
+            width: 100%; 
+            max-width: 440px; 
+            background: var(--card-bg); 
+            padding: 24px; 
+            border-radius: 24px; 
+            border: 1px solid var(--card-border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+            position: relative; 
+        }
+        
+        .app-header { 
+            text-align: center; 
+            margin-bottom: 24px; 
+        }
+        
+        .logo-container { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 10px; 
+            background: rgba(56, 189, 248, 0.1); 
+            padding: 8px 20px; 
+            border-radius: 99px; 
+            border: 1px solid rgba(56, 189, 248, 0.2); 
+        }
+
+        .logo-container h1 { 
+            font-size: 16px; 
+            color: var(--accent-blue); 
+            font-weight: 700; 
+            letter-spacing: 0.5px;
+        }
+
+        .form-group { margin-bottom: 16px; position: relative; }
+        label { display: block; margin-bottom: 6px; font-size: 13px; color: var(--text-muted); font-weight: 400; }
+        
         .input-wrapper { position: relative; width: 100%; }
-        input { width: 100%; padding: 12px; padding-left: 40px; background: #0f172a; border: 1px solid #475569; color: white; border-radius: 8px; font-size: 14px; }
-        input:focus { outline: none; border-color: #38bdf8; }
+        input { 
+            width: 100%; 
+            padding: 12px 14px; 
+            background: var(--input-bg); 
+            border: 1px solid var(--card-border); 
+            color: white; 
+            border-radius: 12px; 
+            font-size: 14px; 
+        }
+        input:focus { 
+            outline: none; 
+            border-color: var(--accent-blue); 
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+        }
         
-        .toggle-password { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #94a3b8; font-size: 16px; user-select: none; }
-        .toggle-password:hover { color: #38bdf8; }
+        .toggle-password { 
+            position: absolute; 
+            left: 12px; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            cursor: pointer; 
+            color: var(--text-muted); 
+            font-size: 16px; 
+        }
 
-        .btn { width: 100%; padding: 12px; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; margin-top: 5px; }
-        .btn:hover { background: #059669; }
-        .btn-secondary { background: #334155; margin-top: 10px; }
-        .btn-secondary:hover { background: #475569; }
-        .btn-danger { background: #ef4444; padding: 6px 10px; font-size: 12px; border-radius: 6px; border: none; color: white; cursor: pointer; }
-        .btn-restore { background: #3b82f6; padding: 5px 8px; font-size: 11px; border-radius: 6px; border: none; color: white; cursor: pointer; }
+        .btn { 
+            width: 100%; 
+            padding: 13px; 
+            background: var(--accent-blue); 
+            color: #0f172a; 
+            border: none; 
+            border-radius: 12px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            font-size: 14px; 
+            margin-top: 8px; 
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+        }
+        .btn:hover { transform: translateY(-1px); opacity: 0.95; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .btn-secondary { 
+            background: transparent; 
+            color: var(--text-muted); 
+            border: 1px solid var(--card-border);
+            box-shadow: none;
+            margin-top: 10px; 
+        }
+        .btn-secondary:hover { background: var(--input-bg); color: var(--text-main); }
+        .btn-danger { background: rgba(244, 63, 94, 0.15); color: var(--accent-red); padding: 6px 12px; font-size: 12px; border-radius: 8px; border: 1px solid rgba(244, 63, 94, 0.3); cursor: pointer; }
+        .btn-restore { background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); padding: 6px 12px; font-size: 12px; border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.3); cursor: pointer; }
 
         .auth-box, .app-box { display: none; }
-        .auth-box.active, .app-box.active { display: block; }
-        
-        .link-text { text-align: center; margin-top: 15px; font-size: 13px; color: #38bdf8; cursor: pointer; }
-        .link-text:hover { text-decoration: underline; }
+        .auth-box.active, .app-box.active { display: block; animation: fadeIn 0.3s ease; }
 
-        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #334155; padding-bottom: 10px; }
-        .user-name-display { font-size: 15px; color: #fbbf24; font-weight: bold; }
-        .menu-icon { font-size: 20px; cursor: pointer; color: #fbbf24; background: #0f172a; padding: 6px 12px; border-radius: 8px; border: 1px solid #334155; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         
-        .dropdown-menu { display: none; position: absolute; top: 100px; right: 20px; background: #0f172a; border: 1px solid #475569; border-radius: 12px; width: 260px; z-index: 20; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-        .dropdown-menu.active { display: block; }
-        .dropdown-item { padding: 12px 15px; font-size: 14px; color: #f8fafc; cursor: pointer; border-bottom: 1px solid #1e293b; display: flex; align-items: center; gap: 10px; }
-        .dropdown-item:hover { background: #1e293b; color: #38bdf8; }
+        .link-text { text-align: center; margin-top: 16px; font-size: 13px; color: var(--accent-blue); cursor: pointer; }
 
-        .custom-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 100; justify-content: center; align-items: center; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .user-name-display { font-size: 15px; color: var(--text-main); font-weight: 700; }
+        .menu-icon { 
+            font-size: 18px; 
+            cursor: pointer; 
+            color: var(--text-main); 
+            background: var(--input-bg); 
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px; 
+            border: 1px solid var(--card-border); 
+        }
+        
+        .dropdown-menu { display: none; position: absolute; top: 70px; right: 24px; background: #1a2336; border: 1px solid var(--card-border); border-radius: 16px; width: 250px; z-index: 20; box-shadow: 0 15px 30px rgba(0,0,0,0.4); overflow: hidden; }
+        .dropdown-menu.active { display: block; animation: fadeIn 0.2s ease; }
+        .dropdown-item { padding: 12px 16px; font-size: 13px; color: var(--text-main); cursor: pointer; border-bottom: 1px solid var(--card-border); display: flex; align-items: center; gap: 10px; }
+        .dropdown-item:hover { background: var(--input-bg); color: var(--accent-blue); }
+
+        .custom-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); z-index: 100; justify-content: center; align-items: center; }
         .custom-modal.active { display: flex; }
-        .modal-content { background: #1e293b; border: 1px solid #475569; width: 90%; max-width: 380px; padding: 20px; border-radius: 14px; box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
-        .modal-header { font-size: 16px; font-weight: bold; color: #38bdf8; margin-bottom: 10px; text-align: center; }
-        .modal-sub { font-size: 12px; color: #94a3b8; text-align: center; margin-bottom: 15px; }
-        .modal-body { max-height: 250px; overflow-y: auto; margin-bottom: 15px; }
-        .trash-row { background: #0f172a; padding: 10px; border-radius: 8px; margin-bottom: 8px; border-left: 3px solid #ef4444; font-size: 13px; color: #f8fafc; display: flex; justify-content: space-between; align-items: center; }
-        .trash-actions { display: flex; gap: 5px; }
-        .modal-buttons { display: flex; gap: 10px; margin-top: 15px; }
-        .modal-btn { flex: 1; padding: 10px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 14px; }
-        .modal-btn-confirm { background: #10b981; color: white; }
-        .modal-btn-confirm:hover { background: #059669; }
-        .modal-btn-cancel { background: #334155; color: white; }
-        .modal-btn-cancel:hover { background: #475569; }
+        .modal-content { background: var(--card-bg); border: 1px solid var(--card-border); width: 90%; max-width: 380px; padding: 24px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+        .modal-header { font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 8px; text-align: center; }
+        .modal-sub { font-size: 12px; color: var(--text-muted); text-align: center; margin-bottom: 16px; }
+        .modal-body { max-height: 250px; overflow-y: auto; margin-bottom: 16px; }
+        .trash-row { background: var(--input-bg); padding: 12px; border-radius: 12px; margin-bottom: 8px; border: 1px solid var(--card-border); font-size: 13px; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; }
+        .trash-actions { display: flex; gap: 6px; }
+        .modal-buttons { display: flex; gap: 10px; margin-top: 16px; }
+        .modal-btn { flex: 1; padding: 10px; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 13px; }
+        .modal-btn-confirm { background: var(--accent-blue); color: #0f172a; }
+        .modal-btn-cancel { background: var(--input-bg); color: var(--text-main); border: 1px solid var(--card-border); }
 
         .custom-select-container { position: relative; }
-        .custom-select-header { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #475569; color: white; border-radius: 8px; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .custom-dropdown-list { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #0f172a; border: 1px solid #475569; border-radius: 8px; margin-top: 5px; z-index: 10; max-height: 180px; overflow-y: auto; box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+        .custom-select-header { width: 100%; padding: 12px 14px; background: var(--input-bg); border: 1px solid var(--card-border); color: white; border-radius: 12px; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .custom-dropdown-list { display: none; position: absolute; top: 105%; left: 0; right: 0; background: #1a2336; border: 1px solid var(--card-border); border-radius: 12px; z-index: 10; max-height: 180px; overflow-y: auto; box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
         .custom-dropdown-list.active { display: block; }
-        .custom-option { padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; cursor: pointer; font-size: 14px; }
-        .custom-option:hover { background: #1e293b; }
-        .option-delete { color: #ef4444; font-weight: bold; padding: 2px 8px; border-radius: 4px; font-size: 16px; }
-        .option-delete:hover { background: rgba(239, 68, 68, 0.2); }
+        .custom-option { padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); cursor: pointer; font-size: 13px; }
+        .custom-option:hover { background: var(--input-bg); }
+        .option-delete { color: var(--accent-red); font-weight: bold; padding: 2px 8px; border-radius: 4px; font-size: 16px; }
 
-        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
-        .tab-btn { flex: 1; padding: 12px; background: #334155; border: none; color: white; cursor: pointer; border-radius: 8px; font-weight: bold; }
-        .tab-btn.active { background: #38bdf8; color: #0f172a; }
+        .tabs { display: flex; gap: 8px; margin-bottom: 20px; background: var(--input-bg); padding: 4px; border-radius: 14px; border: 1px solid var(--card-border); }
+        .tab-btn { flex: 1; padding: 10px; background: transparent; border: none; color: var(--text-muted); cursor: pointer; border-radius: 10px; font-weight: 600; font-size: 13px; }
+        .tab-btn.active { background: var(--card-bg); color: var(--accent-blue); box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
         .section { display: none; }
         .section.active { display: block; }
 
         .select-row { display: flex; gap: 8px; align-items: center; }
-        .add-category-btn { background: #10b981; color: white; border: none; width: 45px; height: 45px; border-radius: 8px; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .add-category-btn:hover { background: #059669; }
+        .add-category-btn { background: var(--input-bg); color: var(--accent-blue); border: 1px solid var(--card-border); width: 44px; height: 44px; border-radius: 12px; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .add-category-btn:hover { border-color: var(--accent-blue); }
 
-        .card { background: #0f172a; padding: 15px; border-radius: 10px; margin-bottom: 15px; border-right: 4px solid #38bdf8; }
-        .card h3 { font-size: 14px; color: #94a3b8; margin-bottom: 5px; }
-        .card p { font-size: 20px; font-weight: bold; color: #38bdf8; }
+        .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; margin-bottom: 15px; }
+        .card { background: var(--input-bg); padding: 14px; border-radius: 14px; border: 1px solid var(--card-border); }
+        .card h3 { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; font-weight: 400; }
+        .card p { font-size: 16px; font-weight: 700; }
 
-        .history-list { list-style: none; margin-top: 15px; max-height: 200px; overflow-y: auto; }
-        .history-item { background: #0f172a; padding: 12px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #334155; }
-        .item-info h4 { font-size: 15px; color: #f8fafc; margin-bottom: 3px; }
-        .item-info span { font-size: 11px; color: #64748b; }
+        .history-list { list-style: none; margin-top: 15px; max-height: 220px; overflow-y: auto; }
+        .history-item { background: var(--input-bg); padding: 12px 14px; border-radius: 12px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--card-border); }
+        .item-info h4 { font-size: 14px; color: var(--text-main); font-weight: 600; margin-bottom: 2px; }
+        .item-info span { font-size: 11px; color: var(--text-muted); }
         .item-left { display: flex; align-items: center; gap: 10px; }
-        .item-price { font-weight: bold; color: #ef4444; }
+        .item-price { font-weight: 700; color: var(--accent-red); font-size: 14px; }
     </style>
 </head>
 <body class="notranslate" translate="no">
@@ -97,60 +206,60 @@
     <div class="container">
         <div class="app-header">
             <div class="logo-container">
-                <span class="logo-emoji">💼</span>
-                <h1>my wallet</h1>
+                <span style="font-size: 18px;">💳</span>
+                <h1>MY WALLET</h1>
             </div>
         </div>
 
         <div id="login-box" class="auth-box active">
-            <h2 style="text-align: center; margin-bottom: 15px; font-size: 18px; color: #94a3b8;">چوونە ژوورەوە</h2>
+            <h2 style="text-align: center; margin-bottom: 20px; font-size: 16px; color: var(--text-muted); font-weight: 400;">چوونە ژوورەوە</h2>
             <div class="form-group">
                 <label>ئیمەیڵ</label>
-                <input type="email" id="login-email">
+                <input type="email" id="login-email" placeholder="example@gmail.com">
             </div>
             <div class="form-group">
                 <label>پاسۆرد</label>
                 <div class="input-wrapper">
-                    <input type="password" id="login-password">
+                    <input type="password" id="login-password" placeholder="••••••••">
                     <span class="toggle-password" onclick="togglePasswordVisibility('login-password', this)">👁️</span>
                 </div>
             </div>
-            <button class="btn" onclick="loginUser()">چوونە ژوورەوە</button>
+            <button class="btn" id="login-btn" onclick="loginUser()">چوونە ژوورەوە</button>
             <button class="btn btn-secondary" onclick="showBox('register-box')">ئەکاونتت نییە؟ دروستی بکە</button>
             <p class="link-text" onclick="showForgotBox()">پاسۆردەکەت بیرچووەتەوە؟</p>
         </div>
 
         <div id="forgot-box" class="auth-box">
-            <h2 style="text-align: center; margin-bottom: 15px; font-size: 18px; color: #94a3b8;">گۆڕینەوەی پاسۆرد</h2>
+            <h2 style="text-align: center; margin-bottom: 20px; font-size: 16px; color: var(--text-muted); font-weight: 400;">گۆڕینەوەی پاسۆرد</h2>
             <div class="form-group">
                 <label>ئیمەیڵی خۆت بنووسە</label>
                 <input type="email" id="forgot-email" placeholder="example@gmail.com">
             </div>
             <button class="btn" onclick="sendResetEmail()">ناردنی لینک بۆ ئیمەیڵ</button>
-            <button class="btn btn-secondary" onclick="showBox('login-box')">گەڕانەوە بۆ چوونە ژوورەوە</button>
+            <button class="btn btn-secondary" onclick="showBox('login-box')">گەڕانەوە</button>
         </div>
 
         <div id="register-box" class="auth-box">
-            <h2 style="text-align: center; margin-bottom: 15px; font-size: 18px; color: #94a3b8;">دروستکردنی ئەکاونت</h2>
+            <h2 style="text-align: center; margin-bottom: 20px; font-size: 16px; color: var(--text-muted); font-weight: 400;">دروستکردنی ئەکاونت</h2>
             <div class="form-group">
                 <label>ئیمەیڵ</label>
-                <input type="email" id="reg-email">
+                <input type="email" id="reg-email" placeholder="example@gmail.com">
             </div>
             <div class="form-group">
                 <label>پاسۆرد</label>
                 <div class="input-wrapper">
-                    <input type="password" id="reg-password">
+                    <input type="password" id="reg-password" placeholder="••••••••">
                     <span class="toggle-password" onclick="togglePasswordVisibility('reg-password', this)">👁️</span>
                 </div>
             </div>
             <div class="form-group">
                 <label>دووبارەکردنەوەی پاسۆرد</label>
                 <div class="input-wrapper">
-                    <input type="password" id="reg-password-confirm">
+                    <input type="password" id="reg-password-confirm" placeholder="••••••••">
                     <span class="toggle-password" onclick="togglePasswordVisibility('reg-password-confirm', this)">👁️</span>
                 </div>
             </div>
-            <button class="btn" onclick="registerUser()">دروستکردنی ئەکاونت</button>
+            <button class="btn" id="reg-btn" onclick="registerUser()">دروستکردنی ئەکاونت</button>
             <button class="btn btn-secondary" onclick="showBox('login-box')">پەشیمان بوویتەوە؟ چوونە ژوورەوە</button>
         </div>
 
@@ -161,12 +270,12 @@
             </div>
 
             <div id="dropdown-menu" class="dropdown-menu">
-                <div class="dropdown-item" id="user-email-display" style="color: #38bdf8; font-size: 12px; border-bottom: 1px dashed #334155;">📧 </div>
+                <div class="dropdown-item" id="user-email-display" style="color: var(--accent-blue); font-size: 12px; border-bottom: 1px dashed var(--card-border);">📧 </div>
                 <div class="dropdown-item" onclick="openCustomModal('name')">👤 گۆڕینی ناوی هەژمار</div>
                 <div class="dropdown-item" onclick="openCustomModal('email')">✉️ گۆڕینی ئیمەیڵی هەژمار</div>
                 <div class="dropdown-item" onclick="openTrashModal()">🕒 مامەڵە سڕاوەکان (٣٠ ڕۆژ)</div>
                 <div class="dropdown-item" onclick="switchAccount()">🔄 گۆڕینی ئەکاونت (Switch)</div>
-                <div class="dropdown-item" style="color: #ef4444;" onclick="openCustomModal('delete')">🗑️ سڕینەوەی هەژمار</div>
+                <div class="dropdown-item" style="color: var(--accent-red);" onclick="openCustomModal('delete')">🗑️ سڕینەوەی هەژمار</div>
                 <div class="dropdown-item" style="color: #fbbf24;" onclick="logoutUser()">🚪 چوونە دەرەوە لە هەژمار</div>
             </div>
 
@@ -198,10 +307,10 @@
 
             <div id="expenses-section" class="section active">
                 <div class="form-group">
-                    <label>جۆری خەرجی (ڕۆیشتوو)</label>
+                    <label>جۆری خەرجی</label>
                     <div class="select-row">
                         <div class="custom-select-container" style="flex: 1;">
-                            <div class="custom-select-header" onclick="toggleCustomDropdown()" id="selected-category-text">
+                            <div class="custom-select-header" onclick="toggleCustomDropdown(event)" id="selected-category-text">
                                 خواردن و خواردنەوە <span>▼</span>
                             </div>
                             <div class="custom-dropdown-list" id="custom-dropdown-list"></div>
@@ -212,41 +321,42 @@
 
                 <div class="form-group">
                     <label>شتی کڕدراو (تایتڵ)</label>
-                    <input type="text" id="expense-title">
+                    <input type="text" id="expense-title" placeholder="نموونە: نان، بەنزین...">
                 </div>
 
                 <div class="form-group">
                     <label>بڕی پارە</label>
-                    <input type="number" id="expense-amount">
+                    <input type="number" id="expense-amount" placeholder="0">
                 </div>
 
                 <button class="btn" onclick="addExpense()">تۆمارکردنی خەرجی</button>
 
-                <div class="card" style="margin-top: 15px; border-color: #ef4444;">
-                    <h3>کۆی پارەی خەرجکراو</h3>
-                    <p id="total-expense" style="color: #ef4444;">0</p>
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3>کۆی خەرجی</h3>
+                        <p id="total-expense" style="color: var(--accent-red);">0</p>
+                    </div>
+                    <div class="card">
+                        <h3>پارەی ماوەتەوە</h3>
+                        <p id="remaining-budget" style="color: var(--accent-green);">0</p>
+                    </div>
                 </div>
 
                 <ul class="history-list" id="expense-list"></ul>
             </div>
 
             <div id="income-section" class="section">
-                <div class="card">
+                <div class="card" style="margin-bottom: 15px;">
                     <h3>پارەی بەردەست بۆ ئەم مانگە</h3>
-                    <p id="display-budget">0</p>
+                    <p id="display-budget" style="color: var(--accent-blue); font-size: 22px;">0</p>
                 </div>
 
                 <div class="form-group">
                     <label>دەستکاری کردنی پارەی هەبوو (پێبوو)</label>
-                    <input type="number" id="monthly-budget-input">
+                    <input type="number" id="monthly-budget-input" placeholder="0">
                 </div>
 
                 <button class="btn" onclick="saveBudget()">نوێکردنەوەی پارە</button>
-                
-                <div class="card" style="margin-top: 15px; border-color: #10b981;">
-                    <h3>پارەی ماوەتەوە</h3>
-                    <p id="remaining-budget" style="color: #10b981;">0</p>
-                </div>
             </div>
         </div>
     </div>
@@ -276,7 +386,6 @@
         window.expensesArray = [];
         window.trashArray = [];
 
-        // کارپێکردنی دوگمەی چاو بۆ پیشاندان و شاردنەوەی پاسۆرد
         window.togglePasswordVisibility = function(fieldId, iconElement) {
             let inputField = document.getElementById(fieldId);
             if (inputField.type === "password") {
@@ -303,10 +412,11 @@
             document.getElementById('forgot-box').classList.add('active');
         }
 
-        window.registerUser = function() {
+        window.registerUser = async function() {
             let email = document.getElementById('reg-email').value.trim();
             let pass = document.getElementById('reg-password').value;
             let confirmPass = document.getElementById('reg-password-confirm').value;
+            let btn = document.getElementById('reg-btn');
 
             if (!email || !pass) {
                 showCustomAlert('تێبینی', 'تکایە خانەکان بە دروستی پڕبکەرەوە!');
@@ -318,30 +428,34 @@
                 return;
             }
 
-            createUserWithEmailAndPassword(auth, email, pass)
-                .then((userCredential) => {
-                    let defaultName = email.split('@')[0];
-                    updateProfile(userCredential.user, { displayName: defaultName }).then(() => {
-                        showCustomAlert('سەرکەوتوو', 'ئەکاونتەکەت بە سەرکەوتوویی دروست بوو!');
-                    });
-                })
-                .catch((error) => {
-                    let msg = error.message;
-                    if (error.code === 'auth/email-already-in-use') {
-                        msg = 'ئەم ئیمەیڵە پێشتر بەکارهاتووە بۆ ئەکاونتێکی تر!';
-                    } else if (error.code === 'auth/invalid-email') {
-                        msg = 'شێوازی ئیمەیڵەکە هەڵەیە!';
-                    } else if (error.code === 'auth/weak-password') {
-                        msg = 'پاسۆرد دەبێت لانیکەم ٦ پیت یان ژمارە بێت!';
-                    }
-                    showCustomAlert('هەڵە', msg);
-                });
+            try {
+                btn.disabled = true;
+                btn.innerText = "تکایە چاوەڕێ بکە...";
+                let userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+                let defaultName = email.split('@')[0];
+                await updateProfile(userCredential.user, { displayName: defaultName });
+                await saveUserDataToCloud();
+                showCustomAlert('سەرکەوتوو', 'ئەکاونتەکەت بە سەرکەوتوویی دروست بوو!');
+            } catch (error) {
+                let msg = error.message;
+                if (error.code === 'auth/email-already-in-use') {
+                    msg = 'ئەم ئیمەیڵە پێشتر بەکارهاتووە بۆ ئەکاونتێکی تر!';
+                } else if (error.code === 'auth/invalid-email') {
+                    msg = 'شێوازی ئیمەیڵەکە هەڵەیە!';
+                } else if (error.code === 'auth/weak-password') {
+                    msg = 'پاسۆرد دەبێت لانیکەم ٦ پیت یان ژمارە بێت!';
+                }
+                showCustomAlert('هەڵە', msg);
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "دروستکردنی ئەکاونت";
+            }
         }
 
-        // پشکنینی دروستی چوونەژوورەوە و نیشاندانی هەڵەی ڕوون
         window.loginUser = async function() {
             let email = document.getElementById('login-email').value.trim();
             let pass = document.getElementById('login-password').value;
+            let btn = document.getElementById('login-btn');
             
             if (!email || !pass) {
                 showCustomAlert('تێبینی', 'تکایە ئیمەیڵ و پاسۆرد بنووسە!');
@@ -349,6 +463,8 @@
             }
 
             try {
+                btn.disabled = true;
+                btn.innerText = "تکایە چاوەڕێ بکە...";
                 await signInWithEmailAndPassword(auth, email, pass);
             } catch (error) {
                 let errorCode = error.code;
@@ -361,6 +477,9 @@
                 }
 
                 showCustomAlert('ئاگاداری', errorMsg);
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "چوونە ژوورەوە";
             }
         }
 
@@ -371,7 +490,6 @@
             signOut(auth);
         }
 
-        // ناردنی ئیمەیڵی گۆڕینەوەی پاسۆرد و ئاگاداریەک بۆ سپام
         window.sendResetEmail = async function() {
             let email = document.getElementById('forgot-email').value.trim();
             if (!email) {
@@ -403,7 +521,7 @@
         window.showCustomAlert = function(title, message) {
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-subtitle').innerText = '';
-            document.getElementById('modal-body-content').innerHTML = `<div style="text-align: center; font-size: 14px; color: #f8fafc; padding: 10px;">${message}</div>`;
+            document.getElementById('modal-body-content').innerHTML = `<div style="text-align: center; font-size: 14px; color: var(--text-main); padding: 10px;">${message}</div>`;
             document.getElementById('modal-cancel-btn').style.display = 'none';
             let okBtn = document.getElementById('modal-ok-btn');
             okBtn.innerText = 'باشە';
@@ -412,7 +530,7 @@
         }
 
         window.openCustomModal = function(type) {
-            toggleMenu();
+            if(document.getElementById('dropdown-menu').classList.contains('active')) toggleMenu();
             let modal = document.getElementById('generic-modal');
             let title = document.getElementById('modal-title');
             let sub = document.getElementById('modal-subtitle');
@@ -427,7 +545,7 @@
                 body.innerHTML = `<input type="text" id="modal-input-field" placeholder="ناوی نوێ...">`;
                 okBtn.innerText = 'گۆڕین';
                 okBtn.onclick = function() {
-                    let val = document.getElementById('modal-input-field').value;
+                    let val = document.getElementById('modal-input-field').value.trim();
                     if (val && auth.currentUser) {
                         updateProfile(auth.currentUser, { displayName: val }).then(() => {
                             document.getElementById('user-name-display').innerText = auth.currentUser.displayName;
@@ -447,7 +565,7 @@
                 `;
                 okBtn.innerText = 'ناردن';
                 okBtn.onclick = function() {
-                    let newEmail = document.getElementById('modal-input-email').value;
+                    let newEmail = document.getElementById('modal-input-email').value.trim();
                     let pass = document.getElementById('modal-input-pass').value;
                     if (newEmail && pass && auth.currentUser) {
                         let user = auth.currentUser;
@@ -520,7 +638,7 @@
         }
 
         window.openTrashModal = function() {
-            toggleMenu();
+            if(document.getElementById('dropdown-menu').classList.contains('active')) toggleMenu();
             renderTrashList();
             document.getElementById('trash-modal').classList.add('active');
         }
@@ -533,6 +651,7 @@
             let index = window.trashArray.findIndex(item => item.id === id);
             if (index !== -1) {
                 let item = window.trashArray.splice(index, 1)[0];
+                delete item.deletedAt;
                 window.expensesArray.push(item);
                 saveUserDataToCloud();
                 renderAll();
@@ -549,18 +668,33 @@
             }
         }
 
+        function cleanOldTrash() {
+            const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
+            const now = Date.now();
+            let originalLength = window.trashArray.length;
+            
+            window.trashArray = window.trashArray.filter(item => {
+                if (!item.deletedAt) return true;
+                return (now - item.deletedAt) < thirtyDaysInMs;
+            });
+
+            if (window.trashArray.length !== originalLength) {
+                saveUserDataToCloud();
+            }
+        }
+
         function renderTrashList() {
             let trashBody = document.getElementById('trash-body');
             trashBody.innerHTML = '';
             if (window.trashArray.length === 0) {
-                trashBody.innerHTML = '<div style="text-align: center; color: #94a3b8; padding: 15px;">هیچ مامەڵەیەک لە سڕاوەکان نییە.</div>';
+                trashBody.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 15px; font-size: 13px;">هیچ مامەڵەیەک لە سڕاوەکان نییە.</div>';
             } else {
                 window.trashArray.forEach(item => {
                     trashBody.innerHTML += `
                         <div class="trash-row">
                             <div>
                                 <b>${item.title}</b>: -${window.formatNumber(item.amount)}<br>
-                                <span style="color: #94a3b8; font-size: 10px;">${item.dateTime}</span>
+                                <span style="color: var(--text-muted); font-size: 10px;">${item.dateTime}</span>
                             </div>
                             <div class="trash-actions">
                                 <button class="btn-restore" onclick="restoreExpense(${item.id})">گەڕانەوە</button>
@@ -606,6 +740,7 @@
                     window.expensesArray = [];
                     window.trashArray = [];
                 }
+                cleanOldTrash();
                 initCategories();
                 renderAll();
             } catch(e) {
@@ -675,7 +810,8 @@
             });
         }
 
-        window.toggleCustomDropdown = function() {
+        window.toggleCustomDropdown = function(e) {
+            if(e) e.stopPropagation();
             document.getElementById('custom-dropdown-list').classList.toggle('active');
         }
 
@@ -716,7 +852,7 @@
         }
 
         window.addExpense = function() {
-            let title = document.getElementById('expense-title').value;
+            let title = document.getElementById('expense-title').value.trim();
             let amount = parseFloat(document.getElementById('expense-amount').value);
 
             if (title && !isNaN(amount) && amount > 0 && window.categories.length > 0) {
@@ -754,14 +890,14 @@
             let remaining = window.monthlyBudgetVal - totalExpenseVal;
             let remElem = document.getElementById('remaining-budget');
             remElem.innerText = window.formatNumber(remaining);
-            remElem.style.color = remaining < 0 ? '#ef4444' : '#10b981';
+            remElem.style.color = remaining < 0 ? 'var(--accent-red)' : 'var(--accent-green)';
 
             let listHTML = '';
             window.expensesArray.forEach(item => {
                 listHTML += `
                     <li class="history-item">
                         <div class="item-info">
-                            <h4>${item.title} (${item.category})</h4>
+                            <h4>${item.title} <span style="font-size: 11px; color: var(--accent-blue); font-weight: 400;">(${item.category})</span></h4>
                             <span>${item.dateTime}</span>
                         </div>
                         <div class="item-left">
@@ -773,6 +909,18 @@
             });
             document.getElementById('expense-list').innerHTML = listHTML;
         }
+
+        window.addEventListener('click', function(e) {
+            let dropList = document.getElementById('custom-dropdown-list');
+            let dropMenu = document.getElementById('dropdown-menu');
+            
+            if (dropList && !e.target.closest('.custom-select-container')) {
+                dropList.classList.remove('active');
+            }
+            if (dropMenu && !e.target.closest('.menu-icon') && !e.target.closest('.dropdown-menu')) {
+                dropMenu.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
