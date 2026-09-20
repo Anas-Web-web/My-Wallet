@@ -5,19 +5,21 @@
     <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Wallet - حساباتی ڕۆژانە</title>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- فۆنتی ناوازەی Vazirmatn -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: #151c2c;
-            --card-border: #232d42;
+            --bg-color: #07090e;
+            --card-bg: rgba(19, 26, 43, 0.85);
+            --card-border: rgba(255, 255, 255, 0.08);
             --accent-blue: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.35);
             --accent-green: #10b981;
             --accent-red: #f43f5e;
             --accent-yellow: #fbbf24;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --input-bg: #0f172a;
+            --input-bg: rgba(12, 17, 29, 0.8);
         }
 
         * { 
@@ -25,13 +27,16 @@
             margin: 0; 
             padding: 0; 
             font-family: 'Vazirmatn', sans-serif; 
-            transition: all 0.2s ease;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body { 
             background: var(--bg-color); 
+            background-image: 
+                radial-gradient(at 20% 20%, rgba(56, 189, 248, 0.12) 0px, transparent 50%),
+                radial-gradient(at 80% 80%, rgba(16, 185, 129, 0.08) 0px, transparent 50%);
             color: var(--text-main); 
-            padding: 16px; 
+            padding: 20px 12px; 
             display: flex; 
             justify-content: center; 
             min-height: 100vh;
@@ -40,12 +45,14 @@
 
         .container { 
             width: 100%; 
-            max-width: 440px; 
+            max-width: 420px; 
             background: var(--card-bg); 
-            padding: 24px; 
-            border-radius: 24px; 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 28px 22px; 
+            border-radius: 28px; 
             border: 1px solid var(--card-border);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1); 
             position: relative; 
         }
         
@@ -58,135 +65,161 @@
             display: inline-flex; 
             align-items: center; 
             gap: 10px; 
-            background: rgba(56, 189, 248, 0.1); 
-            padding: 8px 20px; 
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(56, 189, 248, 0.03)); 
+            padding: 10px 24px; 
             border-radius: 99px; 
-            border: 1px solid rgba(56, 189, 248, 0.2); 
+            border: 1px solid rgba(56, 189, 248, 0.3); 
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
         }
 
         .logo-container h1 { 
-            font-size: 16px; 
+            font-size: 17px; 
             color: var(--accent-blue); 
-            font-weight: 700; 
-            letter-spacing: 0.5px;
+            font-weight: 800; 
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .form-group { margin-bottom: 16px; position: relative; }
-        label { display: block; margin-bottom: 6px; font-size: 13px; color: var(--text-muted); font-weight: 400; }
+        .form-group { margin-bottom: 18px; position: relative; }
+        label { display: block; margin-bottom: 8px; font-size: 13px; color: var(--text-muted); font-weight: 500; }
         
         .input-wrapper { position: relative; width: 100%; }
         input { 
             width: 100%; 
-            padding: 12px 14px; 
+            padding: 14px 16px; 
             background: var(--input-bg); 
             border: 1px solid var(--card-border); 
-            color: white; 
-            border-radius: 12px; 
+            color: #ffffff; 
+            border-radius: 14px; 
             font-size: 14px; 
+            font-weight: 500;
         }
         input:focus { 
             outline: none; 
             border-color: var(--accent-blue); 
-            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+            box-shadow: 0 0 15px var(--accent-glow);
+            background: rgba(15, 23, 42, 0.9);
         }
         
         .toggle-password { 
             position: absolute; 
-            left: 12px; 
+            left: 14px; 
             top: 50%; 
             transform: translateY(-50%); 
             cursor: pointer; 
             color: var(--text-muted); 
-            font-size: 16px; 
+            font-size: 18px; 
+            user-select: none;
         }
 
         .btn { 
             width: 100%; 
-            padding: 13px; 
-            background: var(--accent-blue); 
-            color: #0f172a; 
+            padding: 14px; 
+            background: linear-gradient(135deg, #38bdf8, #0284c7); 
+            color: #ffffff; 
             border: none; 
-            border-radius: 12px; 
-            font-weight: 700; 
+            border-radius: 14px; 
+            font-weight: 800; 
             cursor: pointer; 
-            font-size: 14px; 
-            margin-top: 8px; 
-            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+            font-size: 15px; 
+            margin-top: 10px; 
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
         }
-        .btn:hover { transform: translateY(-1px); opacity: 0.95; }
+        .btn:active { transform: scale(0.98); }
+        .btn:hover { opacity: 0.95; box-shadow: 0 12px 30px rgba(56, 189, 248, 0.4); }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
         .btn-secondary { 
-            background: transparent; 
+            background: rgba(255, 255, 255, 0.03); 
             color: var(--text-muted); 
             border: 1px solid var(--card-border);
             box-shadow: none;
             margin-top: 10px; 
         }
-        .btn-secondary:hover { background: var(--input-bg); color: var(--text-main); }
-        .btn-danger { background: rgba(244, 63, 94, 0.15); color: var(--accent-red); padding: 6px 12px; font-size: 12px; border-radius: 8px; border: 1px solid rgba(244, 63, 94, 0.3); cursor: pointer; }
-        .btn-restore { background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); padding: 6px 12px; font-size: 12px; border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.3); cursor: pointer; }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.08); color: var(--text-main); }
+        .btn-danger { 
+            background: rgba(244, 63, 94, 0.15); 
+            color: var(--accent-red); 
+            padding: 6px 14px; 
+            font-size: 12px; 
+            border-radius: 10px; 
+            border: 1px solid rgba(244, 63, 94, 0.3); 
+            cursor: pointer; 
+            font-weight: 700;
+        }
+        .btn-danger:hover { background: var(--accent-red); color: white; }
+        .btn-restore { 
+            background: rgba(56, 189, 248, 0.15); 
+            color: var(--accent-blue); 
+            padding: 6px 14px; 
+            font-size: 12px; 
+            border-radius: 10px; 
+            border: 1px solid rgba(56, 189, 248, 0.3); 
+            cursor: pointer; 
+            font-weight: 700;
+        }
 
         .auth-box, .app-box { display: none; }
-        .auth-box.active, .app-box.active { display: block; animation: fadeIn 0.3s ease; }
+        .auth-box.active, .app-box.active { display: block; animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(12px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
         
-        .link-text { text-align: center; margin-top: 16px; font-size: 13px; color: var(--accent-blue); cursor: pointer; }
+        .link-text { text-align: center; margin-top: 18px; font-size: 13px; color: var(--accent-blue); cursor: pointer; font-weight: 500; }
 
-        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .user-name-display { font-size: 15px; color: var(--text-main); font-weight: 700; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+        .user-name-display { font-size: 16px; color: var(--text-main); font-weight: 800; letter-spacing: 0.3px; }
         .menu-icon { 
-            font-size: 18px; 
+            font-size: 20px; 
             cursor: pointer; 
             color: var(--text-main); 
             background: var(--input-bg); 
-            width: 38px;
-            height: 38px;
+            width: 42px;
+            height: 42px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 10px; 
+            border-radius: 12px; 
             border: 1px solid var(--card-border); 
         }
+        .menu-icon:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
         
-        .dropdown-menu { display: none; position: absolute; top: 70px; right: 24px; background: #1a2336; border: 1px solid var(--card-border); border-radius: 16px; width: 250px; z-index: 20; box-shadow: 0 15px 30px rgba(0,0,0,0.4); overflow: hidden; }
-        .dropdown-menu.active { display: block; animation: fadeIn 0.2s ease; }
-        .dropdown-item { padding: 12px 16px; font-size: 13px; color: var(--text-main); cursor: pointer; border-bottom: 1px solid var(--card-border); display: flex; align-items: center; gap: 10px; }
-        .dropdown-item:hover { background: var(--input-bg); color: var(--accent-blue); }
+        .dropdown-menu { display: none; position: absolute; top: 75px; right: 22px; background: #0f172a; border: 1px solid var(--card-border); border-radius: 18px; width: 260px; z-index: 20; box-shadow: 0 20px 40px rgba(0,0,0,0.6); overflow: hidden; }
+        .dropdown-menu.active { display: block; animation: fadeIn 0.25s ease; }
+        .dropdown-item { padding: 14px 18px; font-size: 13px; color: var(--text-main); cursor: pointer; border-bottom: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; gap: 10px; font-weight: 500; }
+        .dropdown-item:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent-blue); }
 
-        .custom-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); z-index: 100; justify-content: center; align-items: center; }
+        .custom-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 100; justify-content: center; align-items: center; }
         .custom-modal.active { display: flex; }
-        .modal-content { background: var(--card-bg); border: 1px solid var(--card-border); width: 90%; max-width: 380px; padding: 24px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
-        .modal-header { font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 8px; text-align: center; }
-        .modal-sub { font-size: 12px; color: var(--text-muted); text-align: center; margin-bottom: 16px; }
-        .modal-body { max-height: 250px; overflow-y: auto; margin-bottom: 16px; }
-        .trash-row { background: var(--input-bg); padding: 12px; border-radius: 12px; margin-bottom: 8px; border: 1px solid var(--card-border); font-size: 13px; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; }
-        .trash-actions { display: flex; gap: 6px; }
-        .modal-buttons { display: flex; gap: 10px; margin-top: 16px; }
-        .modal-btn { flex: 1; padding: 10px; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 13px; }
-        .modal-btn-confirm { background: var(--accent-blue); color: #0f172a; }
+        .modal-content { background: #0f172a; border: 1px solid var(--card-border); width: 90%; max-width: 380px; padding: 26px; border-radius: 24px; box-shadow: 0 25px 50px rgba(0,0,0,0.8); }
+        .modal-header { font-size: 17px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; text-align: center; }
+        .modal-sub { font-size: 13px; color: var(--text-muted); text-align: center; margin-bottom: 18px; }
+        .modal-body { max-height: 260px; overflow-y: auto; margin-bottom: 16px; }
+        .trash-row { background: var(--input-bg); padding: 12px 14px; border-radius: 14px; margin-bottom: 10px; border: 1px solid var(--card-border); font-size: 13px; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; }
+        .trash-actions { display: flex; gap: 8px; }
+        .modal-buttons { display: flex; gap: 10px; margin-top: 18px; }
+        .modal-btn { flex: 1; padding: 12px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 13px; }
+        .modal-btn-confirm { background: var(--accent-blue); color: #07090e; }
         .modal-btn-cancel { background: var(--input-bg); color: var(--text-main); border: 1px solid var(--card-border); }
 
-        .tabs { display: flex; gap: 8px; margin-bottom: 20px; background: var(--input-bg); padding: 4px; border-radius: 14px; border: 1px solid var(--card-border); }
-        .tab-btn { flex: 1; padding: 10px; background: transparent; border: none; color: var(--text-muted); cursor: pointer; border-radius: 10px; font-weight: 600; font-size: 13px; }
-        .tab-btn.active { background: var(--card-bg); color: var(--accent-blue); box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .tabs { display: flex; gap: 8px; margin-bottom: 22px; background: var(--input-bg); padding: 6px; border-radius: 16px; border: 1px solid var(--card-border); }
+        .tab-btn { flex: 1; padding: 12px; background: transparent; border: none; color: var(--text-muted); cursor: pointer; border-radius: 12px; font-weight: 700; font-size: 13px; }
+        .tab-btn.active { background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border: 1px solid rgba(56, 189, 248, 0.3); }
         .section { display: none; }
         .section.active { display: block; }
 
-        .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; margin-bottom: 15px; }
-        .card { background: var(--input-bg); padding: 14px; border-radius: 14px; border: 1px solid var(--card-border); }
-        .card h3 { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; font-weight: 400; }
-        .card p { font-size: 16px; font-weight: 700; }
+        .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; margin-bottom: 20px; }
+        .card { background: var(--input-bg); padding: 16px; border-radius: 16px; border: 1px solid var(--card-border); text-align: center; }
+        .card h3 { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
+        .card p { font-size: 18px; font-weight: 800; }
 
-        .history-list { list-style: none; margin-top: 15px; max-height: 220px; overflow-y: auto; }
-        .history-item { background: var(--input-bg); padding: 12px 14px; border-radius: 12px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--card-border); }
-        .item-info h4 { font-size: 14px; color: var(--text-main); font-weight: 600; margin-bottom: 2px; }
+        .history-list { list-style: none; margin-top: 15px; max-height: 240px; overflow-y: auto; }
+        .history-item { background: var(--input-bg); padding: 14px 16px; border-radius: 16px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--card-border); }
+        .item-info h4 { font-size: 14px; color: var(--text-main); font-weight: 700; margin-bottom: 3px; }
         .item-info span { font-size: 11px; color: var(--text-muted); }
-        .item-left { display: flex; align-items: center; gap: 10px; }
-        .item-price { font-weight: 700; color: var(--accent-red); font-size: 14px; }
+        .item-left { display: flex; align-items: center; gap: 12px; }
+        .item-price { font-weight: 800; color: var(--accent-red); font-size: 15px; }
     </style>
 </head>
 <body class="notranslate" translate="no">
@@ -201,7 +234,7 @@
 
         <!-- Login Section -->
         <div id="login-box" class="auth-box active">
-            <h2 style="text-align: center; margin-bottom: 20px; font-size: 16px; color: var(--text-muted); font-weight: 400;">چوونە ژوورەوە</h2>
+            <h2 style="text-align: center; margin-bottom: 22px; font-size: 15px; color: var(--text-muted); font-weight: 500;">چوونە ژوورەوە</h2>
             <div class="form-group">
                 <label>ئیمەیڵ</label>
                 <input type="email" id="login-email" placeholder="example@gmail.com">
@@ -220,7 +253,7 @@
 
         <!-- Reset Password Section -->
         <div id="forgot-box" class="auth-box">
-            <h2 style="text-align: center; margin-bottom: 20px; font-size: 16px; color: var(--text-muted); font-weight: 400;">گۆڕینەوەی پاسۆرد</h2>
+            <h2 style="text-align: center; margin-bottom: 22px; font-size: 15px; color: var(--text-muted); font-weight: 500;">گۆڕینەوەی پاسۆرد</h2>
             <div class="form-group">
                 <label>ئیمەیڵی خۆت بنووسە</label>
                 <input type="email" id="forgot-email" placeholder="example@gmail.com">
@@ -231,7 +264,7 @@
 
         <!-- Register Section -->
         <div id="register-box" class="auth-box">
-            <h2 style="text-align: center; margin-bottom: 20px; font-size: 16px; color: var(--text-muted); font-weight: 400;">دروستکردنی ئەکاونت</h2>
+            <h2 style="text-align: center; margin-bottom: 22px; font-size: 15px; color: var(--text-muted); font-weight: 500;">دروستکردنی ئەکاونت</h2>
             <div class="form-group">
                 <label>ئیمەیڵ</label>
                 <input type="email" id="reg-email" placeholder="example@gmail.com">
@@ -263,7 +296,7 @@
 
             <!-- Dropdown Menu -->
             <div id="dropdown-menu" class="dropdown-menu">
-                <div class="dropdown-item" id="user-email-display" style="color: var(--accent-blue); font-size: 12px; border-bottom: 1px dashed var(--card-border);">📧 </div>
+                <div class="dropdown-item" id="user-email-display" style="color: var(--accent-blue); font-size: 12px; border-bottom: 1px dashed rgba(255,255,255,0.1);">📧 </div>
                 <div class="dropdown-item" onclick="openCustomModal('name')">👤 گۆڕینی ناوی هەژمار</div>
                 <div class="dropdown-item" onclick="openCustomModal('email')">✉️ گۆڕینی ئیمەیڵی هەژمار</div>
                 <div class="dropdown-item" onclick="openTrashModal()">🕒 مامەڵە سڕاوەکان (٣٠ ڕۆژ)</div>
@@ -331,9 +364,9 @@
 
             <!-- Income Tab -->
             <div id="income-section" class="section">
-                <div class="card" style="margin-bottom: 15px;">
+                <div class="card" style="margin-bottom: 18px; padding: 20px;">
                     <h3>پارەی بەردەست بۆ ئەم مانگە</h3>
-                    <p id="display-budget" style="color: var(--accent-blue); font-size: 22px;">0</p>
+                    <p id="display-budget" style="color: var(--accent-blue); font-size: 24px; margin-top: 4px;">0</p>
                 </div>
 
                 <div class="form-group">
