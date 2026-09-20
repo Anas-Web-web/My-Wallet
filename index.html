@@ -61,36 +61,33 @@
             margin-bottom: 24px; 
         }
         
+        /* شێوازی بەشی سەرەوە ڕێک بەپێی وێنەکە */
         .logo-container { 
             display: inline-flex; 
             align-items: center; 
-            gap: 10px; 
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(255, 255, 255, 0.02)); 
-            padding: 8px 18px; 
-            border-radius: 99px; 
-            border: 1px solid rgba(56, 189, 248, 0.2); 
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .logo-icon {
-            width: 28px;
-            height: 28px;
-            background: linear-gradient(135deg, var(--accent-blue), #0284c7);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            color: #07090e;
-            font-weight: 800;
-            font-size: 14px;
-            box-shadow: 0 0 10px var(--accent-glow);
+            gap: 12px; 
+            background: rgba(15, 23, 42, 0.6); 
+            padding: 10px 28px; 
+            border-radius: 999px; 
+            border: 1.5px solid rgba(56, 189, 248, 0.4); 
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+            direction: ltr; /* بۆ ئەوەی دەق لە چەپ و ئایکۆن لە ڕاست بێت وەک وێنەکە */
         }
 
         .logo-container h1 { 
-            font-size: 14px; 
-            color: var(--text-main); 
-            font-weight: 700; 
-            letter-spacing: 0.5px;
+            font-size: 18px; 
+            color: #38bdf8; 
+            font-weight: 800; 
+            letter-spacing: 1px;
+            font-family: inherit;
+        }
+
+        .wallet-icon {
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .form-group { margin-bottom: 18px; position: relative; }
@@ -238,10 +235,16 @@
 <body class="notranslate" translate="no">
 
     <div class="container">
+        <!-- Header تەواو وەک وێنەکە -->
         <div class="app-header">
             <div class="logo-container">
-                <div class="logo-icon">W</div>
-                <h1>گرفانی من</h1>
+                <h1>𝑴𝒀 𝑾𝑨𝑳𝑳𝑬𝑻</h1>
+                <div class="wallet-icon">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3"/>
+                        <path d="M16 12h5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/>
+                    </svg>
+                </div>
             </div>
         </div>
 
